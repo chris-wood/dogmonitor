@@ -1,4 +1,4 @@
-int analogPin = 5;     // mic connected to analog pin 0
+int analogPin = 5;     // mic connected to analog pin 5
                        // outside leads to ground and +5V
 int val = 0;           // variable to store the mic read
 int ledPin = 13;
@@ -25,21 +25,13 @@ void loop() {
 //  Serial.println(val);
   if (val > 800) {
     digitalWrite(ledPin, HIGH);
-    
-    Serial.print("Sent: ");
-    int sent = impSerial.write(val / 10);  // to the software serial, truncating 
-    Serial.println(sent);
+
+    // Truncate the value that' sent
+    int sent = impSerial.write(val / 10);
     delay(1000);
   } else {
     digitalWrite(ledPin, LOW);
   }
-
-  // Send data from the software serial
-//  if (impSerial.available())
-//    Serial.write(impSerial.read());  // to the hardware serial
-  // Send data from the hardware serial
-//  if (Serial.available())
-  
 }
 
 
