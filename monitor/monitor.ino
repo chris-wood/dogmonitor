@@ -25,6 +25,7 @@ void loop() {
 //  Serial.println(val);
   if (val > 800) {
     digitalWrite(ledPin, HIGH);
+    
     Serial.print("Sent: ");
     int sent = impSerial.write(val / 10);  // to the software serial, truncating 
     Serial.println(sent);
