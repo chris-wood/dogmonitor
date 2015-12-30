@@ -3,6 +3,7 @@ from flask import Flask, jsonify, Response
 from functools import wraps
 from flask import redirect, request, current_app
 from flask import Flask, render_template, abort, request, redirect, url_for, session
+from threading import Lock
 app = Flask(__name__)
 
 sounds = []
