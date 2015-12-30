@@ -75,7 +75,8 @@
 
         var app = angular.module('home-dashboard-app', []);
         app.controller('home-controller', function($scope) {
-            plotChart('time.line', "#volume", "http://localhost:5000/volume");
+            url = "http://localhost:5000/volume";
+            plotChart('time.line', "#volume", url);
         });
     </script>
 </html>
