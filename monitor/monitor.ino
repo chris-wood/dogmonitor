@@ -23,12 +23,12 @@ void setup() {
 void loop() {
   val = analogRead(analogPin);
 //  Serial.println(val);
-  if (val > 800) {
+  if (val > 1000) {
     digitalWrite(ledPin, HIGH);
 
     // Truncate the value that' sent
     int sent = impSerial.write(val / 10);
-    delay(1000);
+    delay(50);
   } else {
     digitalWrite(ledPin, LOW);
   }
