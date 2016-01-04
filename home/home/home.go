@@ -32,7 +32,17 @@ func homeHandler(w http.ResponseWriter, r *http.Request) {
 func soundHandler(w http.ResponseWriter, r *http.Request) {
     switch r.Method {
         case "GET": // Serve the resource.
-            // TODO!
+            reading := soundReadings[len(soundReadings)-1]
+            
+            readingJson, err := json.Marshal(reading)
+            if err != nil {
+                http.Error(w, err.Error(), http.StatusInternalServerError)
+                return
+            }
+
+            w.Header().Set("Content-Type", "application/json")
+            w.Write(readingJson)
+
             break
         case "POST": // Create a new record.
             decoder := json.NewDecoder(r.Body)
@@ -46,6 +56,7 @@ func soundHandler(w http.ResponseWriter, r *http.Request) {
 
             // c := appengine.NewContext(r)
             log.Printf("Saving value: %v\n", reading)
+            break
         default:
             // Give an error message.
     }
