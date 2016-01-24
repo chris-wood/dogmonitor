@@ -38,17 +38,17 @@ function initUart()
 //  will read the data in, and send it out to the agent.
 function serialRead()
 {
-    local soundValue = arduino.read(); 
+    local soundValue = arduino.read();
     local soundReading = {
         value = soundValue,
-        time_stamp = getTime(),
+        time_stamp = 0,
     }
-    
+
     // Push the sound reading to the agent
     agent.send("soundReading", soundReading);
-    
+
     // Inidicate physical activity
-    toggleRxLED(); 
+    toggleRxLED();
 }
 
 // initLEDs() simply initializes the LEDs, and turns them off. Remember that the
@@ -95,4 +95,3 @@ agent.on("initsuccess", function(msg) {
 initLEDs();
 initUart();
 agent.send("init", "let's get it started in heah");
-
