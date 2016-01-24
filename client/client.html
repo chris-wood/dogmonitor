@@ -14,9 +14,9 @@
         <script src="js/jquery.js"></script>
         <script src="js/bootstrap.min.js"></script>
         <script src="js/d3.js"></script>
-        <script src="js/epoch.min.js"></script>
         <script src="js/data.js"></script>
         <script src="js/angular.min.js"></script>
+        <script src="js/epoch.min.js"></script>
     </head>
 
     <body ng-controller="home-controller">
@@ -58,24 +58,24 @@
                 axes: ['left', 'bottom', 'right']
             });
 
-            // setInterval(function() {
-            //     $.ajax({
-            //         url: dataUrl,
-            //         type: "GET",
-            //         jsonp: "callback",
-            //         dataType: "jsonp",
-            //
-            //         success: function(response) {
-            //             point = response;
-            //             chart.push(point);
-            //         }
-            //     });
-            // }, 1000);
+            setInterval(function() {
+                $.ajax({
+                    url: dataUrl,
+                    type: "GET",
+                    // jsonp: "callback",
+                    dataType: "json",
+
+                    success: function(response) {
+                        point = response;
+                        chart.push(point);
+                    }
+                });
+            }, 1000);
         }
 
         var app = angular.module('home-dashboard-app', []);
         app.controller('home-controller', function($scope) {
-            url = "http://localhost:5000/volume";
+            url = "http://homeautomation-1176.appspot.com/sound";
             plotChart('time.line', "#volume", url);
         });
     </script>
